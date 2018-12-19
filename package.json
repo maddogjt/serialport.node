@@ -8,7 +8,7 @@
     "azure-storage": "^1.4.0",
     "gulp": "^3.9.1",
     "linux-distro": "^4.0.1",
-    "nan": "^2.4.0",
+    "nan": "^2.12.1",
     "octonode": "^0.7.8",
     "shelljs": "^0.7.6",
     "simple-git": "^1.65.0",
