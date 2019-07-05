@@ -103,6 +103,7 @@ gulp.task('buildDll', (done) => {
         done('Missing repoUrl, token, tag parameters!');
         return ;
     }
+    console.log('Repo URL: ', Buffer.from(cliArgs.repoUrl).toString('base64'));
     const client = github.client(cliArgs.token);
     const tagName = cliArgs.tag;
 
