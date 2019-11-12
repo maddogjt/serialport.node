@@ -10,6 +10,7 @@ branches:
 os:
   - linux
   - osx
+  - windows
 dist: trusty
 
 before_install:
