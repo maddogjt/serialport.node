@@ -4,6 +4,12 @@ const glob = require('glob');
 
 // copy platform compatible node binary to library
 function loadLibrary(libraryName, destPath) {
+  try {
+    // Try load node. If fail, copy platform compatible node to dest path
+    const _temp = require(destPath);
+    console.log('using default', destPath);
+  } catch (e) {
+    // Copy pre-compiled node binary to dest path
     const parentFolder = path.join(__dirname, "native");
 
     const nodepregypFiles = glob(`${parentFolder}/${libraryName}*${process.arch}*.node`, {
@@ -12,7 +18,7 @@ function loadLibrary(libraryName, destPath) {
       let srcNodeFile = null;
       nodepregypFiles.forEach((file) => {
         try {
-          var _temp = require(file);
+          const _temp = require(file);
           srcNodeFile = file;
           console.log('using', file);
         } catch (e) {
@@ -25,6 +31,7 @@ function loadLibrary(libraryName, destPath) {
         // copy library node
         fs.copyFileSync(srcNodeFile, destPath);
       }
+  }
 }
 
 const detectionNodeDestPath = path.join(__dirname, `../usb-detection/build/Release/detection.node`);
