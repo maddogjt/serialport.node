@@ -29,6 +29,10 @@ function loadLibrary(libraryName, destPath) {
         console.log('[Warn]', 'no library available after trying files', nodepregypFiles);
       } else {
         // copy library node
+        const destDir = path.dirname(destPath);
+        if (!fs.existsSync(destDir)) {
+          fs.mkdirSync(destDir, { recursive: true });
+        }
         fs.copyFileSync(srcNodeFile, destPath);
       }
   }
