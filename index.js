@@ -1,23 +1,30 @@
 const path = require("path");
 const fs = require("fs-extra");
+const glob = require('glob');
 
 // copy platform compatible node binary to library
 function loadLibrary(libraryName, destPath) {
     const parentFolder = path.join(__dirname, "native");
-    const electron = "7.1.11";
-    const pattern = RegExp(`${libraryName}*_${electron}_${process.arch}.node`);
-    const preBuildNodeFile = fs.readdirSync(parentFolder).filter((file) => {
-        return file.match(pattern);
-    })
 
-    if (!preBuildNodeFile) {
-        console.log('[Warn]', `no available ${libraryName} with electron ${electron}, arch ${process.arch}`);
-    }
+    const nodepregypFiles = glob(`${parentFolder}/${libraryName}*${process.arch}*.node`, {
+        sync: true
+      });
+      let srcNodeFile = null;
+      nodepregypFiles.forEach((file) => {
+        try {
+          var _temp = require(file);
+          srcNodeFile = file;
+          console.log('using', file);
+        } catch (e) {
+        }
+      });
 
-    // copy library node
-    const srcPath = path.join(parentFolder, preBuildNodeFile);
-    fs.copyFileSync(srcPath, destPath);
-    console.log('using', preBuildNodeFile);
+      if (!srcNodeFile) {
+        console.log('[Warn]', 'no library available after trying files', nodepregypFiles);
+      } else {
+        // copy library node
+        fs.copyFileSync(srcNodeFile, destPath);
+      }
 }
 
 const detectionNodeDestPath = path.join(__dirname, `../usb-detection/build/Release/detection.node`);
