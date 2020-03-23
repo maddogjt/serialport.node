@@ -21,6 +21,8 @@ before_install:
       sudo apt-get install libudev-dev;
     fi
   - npm install -g vsce
+  - npm install -g node-gyp	
+  - npm install -g gulp
 
 install:
   - npm install
