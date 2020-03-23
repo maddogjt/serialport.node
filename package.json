@@ -1,8 +1,8 @@
 {
-  "name": "usb-native",
+  "name": "node-usb-native",
   "displayName": "serialport and usb-detection native node",
   "description": "precompile cross-platform serialport and usb-detection dll libraries and load libraries according to platform",
-  "version": "5.0.12",
+  "version": "0.0.1",
   "main": "index.js",
   "repository": "https://github.com/VSChina/serialport.node",
   "dependencies": {
@@ -10,6 +10,7 @@
     "serialport": "^8.0.7",
     "usb-detection": "^4.7.0"
   },
+  "author": "vsc-npm",
   "devDependencies": {
     "async": "^2.1.4",
     "azure-storage": "^1.4.0",
