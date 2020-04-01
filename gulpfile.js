@@ -119,15 +119,15 @@ function getNodeNameAndUploadAssets(libraryName, electron, arch, client, tagName
 }
 
 gulp.task('build', (done)=> {
-    if (!cliArgs.token || !cliArgs.tag) {
-        done('Missing token, tag parameters!');
+    if (!cliArgs.electron || !cliArgs.token || !cliArgs.tag) {
+        done('Missing electron version, token, tag parameters!');
         return ;
     }
     const client = github.client(cliArgs.token);
     const tagName = cliArgs.tag;
+    const electron = cliArgs.electron;
 
     const archs = ["ia32", "x64"];
-    const electron = "7.1.11";
     const platform = require('os').platform();
 
     const tasks = [];
