@@ -1,5 +1,7 @@
 # node-usb-native
 
+1. Update serialport and usb-detection package version in [package.json](./package.json), ensuring the versions of them meets the need of new version electron. Search [serialport](https://github.com/serialport/node-serialport/releases) and [usb-detection](https://github.com/MadLittleMods/node-usb-detection/releases) repo to find the coresponding version number.
+
 1. Update electron version in [.travis.yml](./.travis.yml)
 
     ```bash
